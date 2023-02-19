@@ -130,7 +130,7 @@ const SignInButton = styled(Button)`
 const TextBtn = styled(Button)`
   color: #99a1ab;
   margin: 0 6px;
-  padding: 8px 16px;
+  padding: 8px 6px;
   font-size: 0.875rem;
   min-width: 64px;
   box-sizing: border-box;
