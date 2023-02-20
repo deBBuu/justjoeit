@@ -85,6 +85,10 @@ const PostJobButton = styled(Button)`
     text-decoration: none;
     background-color: rgba(55, 71, 79, 0.04);
   }
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 
 const ButtonStyled = styled(Button)`
