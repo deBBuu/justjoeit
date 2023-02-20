@@ -48,6 +48,10 @@ const Description = styled(Box)`
   font-family: Open Sans, sans-serif;
   color: #99a1ab;
   font-size: 0.875rem;
+
+  @media (max-width: 1060px) {
+    display: none;
+  }
 `;
 
 export default Info;

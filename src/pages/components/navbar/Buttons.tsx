@@ -92,7 +92,7 @@ const ButtonStyled = styled(Button)`
   width: 58px;
   border: none;
   cursor: pointer;
-  height: 67px;
+  height: 100%;
   display: flex;
   font-size: 14px;
   background: #ffffff;
@@ -157,6 +157,10 @@ const TextBtn = styled(Button)`
 
   &:focus-visible {
     background: none;
+  }
+
+  @media (max-width: 1025px) {
+    display: none;
   }
 `;
 
