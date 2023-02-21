@@ -1,13 +1,13 @@
 import { styled } from "@mui/material/styles";
-import { Box, Button, Popover } from "@mui/material";
+import { Box, Button, Drawer, Popover } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import PopoutCurrencies from "@/pages/components/navbar/PopoutCurrencies";
+import Sidenav from "@/pages/components/navbar/sidenav/Sidenav";
 
 const Buttons = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -18,6 +18,12 @@ const Buttons = () => {
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
+
+  const [openSidenav, setOpenSidenav] = useState(false);
+
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setOpenSidenav(newOpen);
+  };
 
   return (
     <Wrapper>
@@ -33,7 +39,10 @@ const Buttons = () => {
       <ButtonStyled aria-describedby={id} onClick={handleClick}>
         PLN
       </ButtonStyled>
-      <PopoverStyled
+      <ButtonStyled onClick={toggleDrawer(true)}>
+        <MenuIcon />
+      </ButtonStyled>
+      <Currencies
         id={id}
         open={open}
         anchorEl={anchorEl}
@@ -44,10 +53,15 @@ const Buttons = () => {
         }}
       >
         <PopoutCurrencies />
-      </PopoverStyled>
-      <ButtonStyled>
-        <MenuIcon />
-      </ButtonStyled>
+      </Currencies>
+      <DrawerStyled
+        anchor="right"
+        open={openSidenav}
+        onClose={toggleDrawer(false)}
+        PaperProps={{ style: { width: "320px" } }}
+      >
+        <Sidenav toggleDrawer={toggleDrawer} />
+      </DrawerStyled>
     </Wrapper>
   );
 };
@@ -168,8 +182,10 @@ const TextBtn = styled(Button)`
   }
 `;
 
-const PopoverStyled = styled(Popover)`
+const Currencies = styled(Popover)`
   width: 230px;
   height: 330px;
   margin-top: 10px;
 `;
+
+const DrawerStyled = styled(Drawer)``;
